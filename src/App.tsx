@@ -12,10 +12,10 @@ interface ItemResult {
 
 const App: FunctionComponent = () => {
   const { data: versions } = useSWR<string[]>('https://ddragon.leagueoflegends.com/api/versions.json')
-  const { data: items } = useSWR<ItemResult>(() => (versions == null) ? null : `http://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/en_US/item.json`)
-  const { data: itemsTw } = useSWR<ItemResult>(() => (versions == null) ? null : `http://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/zh_TW/item.json`)
-  const { data: itemsCn } = useSWR<ItemResult>(() => (versions == null) ? null : `http://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/zh_CN/item.json`)
-  const { data: itemsKo } = useSWR<ItemResult>(() => (versions == null) ? null : `http://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/ko_KR/item.json`)
+  const { data: items } = useSWR<ItemResult>(() => (versions == null) ? null : `https://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/en_US/item.json`)
+  const { data: itemsTw } = useSWR<ItemResult>(() => (versions == null) ? null : `https://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/zh_TW/item.json`)
+  const { data: itemsCn } = useSWR<ItemResult>(() => (versions == null) ? null : `https://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/zh_CN/item.json`)
+  const { data: itemsKo } = useSWR<ItemResult>(() => (versions == null) ? null : `https://ddragon.leagueoflegends.com/cdn/${versions[0]}/data/ko_KR/item.json`)
   if (versions == null || items == null || itemsTw == null || itemsCn == null || itemsKo == null) {
     return <>Fetching Data Dragon...</>
   }
@@ -36,7 +36,7 @@ const App: FunctionComponent = () => {
         <tbody>
           {Object.entries(items.data).map(([id, detail]) =>
             <tr>
-              <td><img src={`http://ddragon.leagueoflegends.com/cdn/${version}/img/item/${id}.png`} alt={detail.name}/></td>
+              <td><img src={`https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${id}.png`} alt={detail.name}/></td>
               <td>{detail.name}</td>
               <td>{itemsTw.data[id].name}</td>
               <td>{itemsCn.data[id].name}</td>
